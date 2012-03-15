@@ -1,0 +1,1 @@
+0 * * * * zcat -f /var/log/nginx/frompythonimportpodcast.com.access.log* | python /home/mcrute/bin/fpip_logs.py > /srv/www/frompythonimportpodcast.com/www/htdocs/downloads.txt
