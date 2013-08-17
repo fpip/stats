@@ -1,5 +1,6 @@
 import pyrax
 
+pyrax.set_setting("identity_type", "rackspace")
 pyrax.set_credential_file('~/.pyrax')
 pyrax.authenticate()
 cf_ord = pyrax.connect_to_cloudfiles(region="ORD")
