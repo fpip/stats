@@ -32,6 +32,6 @@ for line in sys.stdin:
         shows[key].add(hash(line))
 
 
-print SimpleTable([(show, len(dls)) for show, dls in shows.items()], ('Show', 'Unique'))
+print SimpleTable(sorted([(show, len(dls)) for show, dls in shows.items()]), ('Show', 'Unique'))
 
 pickle.dump(shows, open(state_file, 'wb'))
