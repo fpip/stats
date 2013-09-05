@@ -14,12 +14,23 @@ else:
     shows = defaultdict(set)
 
 for line in sys.stdin:
-    if ' 200 ' not in line:
-        continue
+    parts = line.split()
 
-    match = show_regex.findall(line)
+    match = None
+    partial = None
+
+    if '000' in parts or '206' in parts:
+        partial = True
+        match = show_regex.findall(line)
+
+    elif '200' in parts:
+        partial = False
+        match = show_regex.findall(line)
+
     if match:
-        shows[match[0]].add(hash(line))
+        key = match[0] + " (Partial/Stream)" if partial else match[0]
+        shows[key].add(hash(line))
+
 
 print SimpleTable([(show, len(dls)) for show, dls in shows.items()], ('Show', 'Unique'))
 
