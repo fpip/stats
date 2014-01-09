@@ -1,5 +1,6 @@
 import os
 import pyrax
+from pyrax.exceptions import NoSuchObject
 
 home = os.environ['HOME']
 creds = home + "/.pyrax"
@@ -15,4 +16,7 @@ objects = container.get_objects()
 
 for obj in objects:
     obj.download(logs, structure=False)
-    obj.delete()
+    try:
+        obj.delete()
+    except NoSuchObject, e:
+        print "Couldn't delete %s; %s" % (obj, e)
