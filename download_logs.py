@@ -8,7 +8,7 @@ logs = home + "/logs/cdn"
 
 pyrax.set_setting("identity_type", "rackspace")
 pyrax.set_credential_file(creds, region="ORD")
-print "Authenticating"...
+print "Authenticating..."
 pyrax.authenticate()
 
 cf = pyrax.cloudfiles
